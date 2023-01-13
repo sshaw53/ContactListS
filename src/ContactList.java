@@ -41,14 +41,36 @@ public class ContactList
      */
     public void addContact() {
         // TODO: Complete the addContact method
+        Scanner s = new Scanner(System.in);
         Person p;
-        String firstName;
-        String lastName;
-        String phoneNumber;
+        int choice = 0;
+        while (choice < 1 || choice > 2) {
+            System.out.println("Select a type of contact to add: \n1. Student \n2. Worker");
+            choice = s.nextInt();
+        }
 
-        System.out.println("Select a type of contact to add: \n1. Student \n2. Worker");
+        System.out.println("Please fill in the following information.\nFirst Name: ");
+        String firstName = s.nextLine();
+        s.nextLine();
+        System.out.println("Last Name: ");
+        String lastName = s.nextLine();
+        s.nextLine();
+        System.out.println("Phone Number: ");
+        String phoneNumber = s.nextLine();
+        s.nextLine();
 
+        if (choice == 1) {
+            System.out.println("Grade: ");
+            int grade = s.nextInt();
+            p = new Student(firstName, lastName, phoneNumber, grade);
+        }
+        else {
+            System.out.println("Salary: ");
+            int salary = s.nextInt();
+            p = new Worker(firstName, lastName, phoneNumber, salary);
+        }
 
+        contacts.add(p);
     }
 
     /**
@@ -56,6 +78,9 @@ public class ContactList
      */
     public void printContacts() {
         // TODO: Complete the printContacts method
+        for (Person p: contacts) {
+            System.out.println(p);
+        }
     }
 
     /**
