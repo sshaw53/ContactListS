@@ -40,7 +40,6 @@ public class ContactList
      * to the contact list
      */
     public void addContact() {
-        // TODO: Complete the addContact method
         Scanner s = new Scanner(System.in);
         Person p;
         int choice = 0;
@@ -77,7 +76,6 @@ public class ContactList
      * Loops through and prints all contacts
      */
     public void printContacts() {
-        // TODO: Complete the printContacts method
         for (Person p: contacts) {
             System.out.println(p);
         }
@@ -89,20 +87,73 @@ public class ContactList
      * @param sortBy: 0=firstName, 1=lastName, 2=phoneNumber
      */
     public void sort(int sortBy) {
-        // TODO: Complete the sort method
+        int n = contacts.size();
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < n - i; j++) {
+                // sort by first name
+                if (sortBy == 0) {
+                    if (contacts.get(j).getFirstName().compareTo(contacts.get(j + 1).getFirstName()) == 1) {
+                        // swap
+                        Person p = contacts.remove(j);
+                        contacts.add(j + 1, p);
+                    }
+                }
+                // sort by last name
+                else if (sortBy == 1) {
+                    if (contacts.get(j).getLastName().compareTo(contacts.get(j + 1).getLastName()) == 1) {
+                        // swap
+                        Person p = contacts.remove(j);
+                        contacts.add(j + 1, p);
+                    }
+                }
+                    // sort by phone number
+                else if (sortBy == 2) {
+                    if (contacts.get(j).getPhoneNumber().compareTo(contacts.get(j + 1).getPhoneNumber()) == 1) {
+                        // swap
+                        Person p = contacts.remove(j);
+                        contacts.add(j + 1, p);
+                    }
+                }
+            }
+        }
+        return;
+    }
+    public Person searchByFirstName(String name) {
+        for (Person p: contacts) {
+            if (p.getFirstName() == name) {
+                return p;
+            }
+        }
+        return null;
     }
 
-    // TODO: Write searchByFirstName
+    public Person searchByLastName(String lastName) {
+        for (Person p: contacts) {
+            if (p.getLastName() == lastName) {
+                return p;
+            }
+        }
+        return null;
+    }
 
-    // TODO: Write searchByLastName
-
-    // TODO: Write searchByPhoneNumber
+    public Person searchByPhoneNumber(String phoneNumber) {
+        for (Person p: contacts) {
+            if (p.getPhoneNumber() == phoneNumber) {
+                return p;
+            }
+        }
+        return null;
+    }
 
     /**
      * Lists just the Student objects in the Contact List
      */
     public void listStudents() {
-        // TODO: Complete the listStudents method
+        for (Person p: contacts) {
+            if (p instanceof Student) {
+                System.out.println(p);
+            }
+        }
     }
 
     /**
@@ -115,6 +166,11 @@ public class ContactList
         printMenuOptions();
 
         // TODO: Complete the run method
+        Scanner s = new Scanner (System.in);
+        int input = 1;
+        while (input != 0) {
+            //
+        }
     }
 
 
