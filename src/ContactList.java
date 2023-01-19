@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class ContactList
 {
-    // Array of many contacts
+    // Array of  contacts
     private ArrayList<Person> contacts;
 
     // Constructor
