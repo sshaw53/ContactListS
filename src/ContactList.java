@@ -49,6 +49,7 @@ public class ContactList
         }
 
         System.out.println("Please fill in the following information.\nFirst Name: ");
+        s.nextLine();
         String firstName = s.nextLine();
         s.nextLine();
         System.out.println("Last Name: ");
@@ -92,7 +93,7 @@ public class ContactList
             for (int j = 0; j < n - i; j++) {
                 // sort by first name
                 if (sortBy == 0) {
-                    if (contacts.get(j).getFirstName().compareTo(contacts.get(j + 1).getFirstName()) == 1) {
+                    if (contacts.get(j).getFirstName().compareTo(contacts.get(j + 1).getFirstName()) > 0) {
                         // swap
                         Person p = contacts.remove(j);
                         contacts.add(j + 1, p);
@@ -100,15 +101,15 @@ public class ContactList
                 }
                 // sort by last name
                 else if (sortBy == 1) {
-                    if (contacts.get(j).getLastName().compareTo(contacts.get(j + 1).getLastName()) == 1) {
+                    if (contacts.get(j).getLastName().compareTo(contacts.get(j + 1).getLastName()) > 0) {
                         // swap
                         Person p = contacts.remove(j);
                         contacts.add(j + 1, p);
                     }
                 }
-                    // sort by phone number
+                // sort by phone number
                 else if (sortBy == 2) {
-                    if (contacts.get(j).getPhoneNumber().compareTo(contacts.get(j + 1).getPhoneNumber()) == 1) {
+                    if (contacts.get(j).getPhoneNumber().compareTo(contacts.get(j + 1).getPhoneNumber()) > 0) {
                         // swap
                         Person p = contacts.remove(j);
                         contacts.add(j + 1, p);
@@ -120,7 +121,7 @@ public class ContactList
     }
     public Person searchByFirstName(String name) {
         for (Person p: contacts) {
-            if (p.getFirstName() == name) {
+            if (p.getFirstName().equals(name)) {
                 return p;
             }
         }
@@ -129,7 +130,7 @@ public class ContactList
 
     public Person searchByLastName(String lastName) {
         for (Person p: contacts) {
-            if (p.getLastName() == lastName) {
+            if (p.getLastName().equals(lastName)) {
                 return p;
             }
         }
@@ -138,7 +139,7 @@ public class ContactList
 
     public Person searchByPhoneNumber(String phoneNumber) {
         for (Person p: contacts) {
-            if (p.getPhoneNumber() == phoneNumber) {
+            if (p.getPhoneNumber().equals(phoneNumber)) {
                 return p;
             }
         }
@@ -163,13 +164,60 @@ public class ContactList
     public void run() {
         System.out.println("Welcome to your Contacts List");
         System.out.println("Please pick from the following menu options");
-        printMenuOptions();
 
         // TODO: Complete the run method
         Scanner s = new Scanner (System.in);
         int input = 1;
         while (input != 0) {
-            //
+            printMenuOptions();
+            input = s.nextInt();
+            s.nextLine();
+            if (input == 1) {
+                addContact();
+            }
+            else if (input == 2) {
+                sort(0);
+                printContacts();
+            }
+            else if (input == 3) {
+                sort(1);
+                printContacts();
+            }
+            else if (input == 4) {
+                sort(2);
+                printContacts();
+            }
+            else if (input == 5) {
+                listStudents();
+            }
+            else if (input == 6) {
+                System.out.println("Enter a name:");
+                String name = s.nextLine();
+
+                if (searchByFirstName(name) == null)
+                    System.out.println(name + " is not in the list.");
+                else
+                    System.out.println(searchByFirstName(name));
+            }
+            else if (input == 7) {
+                System.out.println("Enter a last name:");
+                String name = s.nextLine();
+
+                if (searchByLastName(name) == null)
+                    System.out.println(name + " is not in the list.");
+                else
+                    System.out.println(searchByLastName(name));
+            }
+            else if (input == 8) {
+                System.out.println("Enter a phone number:");
+                String number = s.nextLine();
+
+                if (searchByPhoneNumber(number) == null)
+                    System.out.println(number + " is not in the list.");
+                else
+                    System.out.println(searchByPhoneNumber(number));
+            }
+            s.nextLine();
         }
     }
 
